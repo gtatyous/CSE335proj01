@@ -5,7 +5,7 @@
 
 ///////////////////////////////////
 
-string Drink::size(int s) const {
+string size(int s) const {
     if (s==1) {
         return "small";
     } else if (s==2) {
