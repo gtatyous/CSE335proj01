@@ -14,7 +14,7 @@ class Drink {
         string customer_name;
     public: 
         virtual void confirmOrder() const = 0;
-        string size (int) const;
+        //string size (int) const;
 };
 
 
