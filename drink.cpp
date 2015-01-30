@@ -1,11 +1,11 @@
-//Name, section, project01, code description
+
 // questions: do we need virtual destructors?
 
 #include "drink.h"
 
 ///////////////////////////////////
 
-string size(int s) const {
+string size(int s) {
     if (s==1) {
         return "small";
     } else if (s==2) {
@@ -25,8 +25,10 @@ BubbleTea:: BubbleTea (string name, int dsize, bool temp, int bsize) {
 } 
 
 BubbleTea::BubbleTea (const BubbleTea &rhs) {
-    BubbleTea (rhs.customer_name, rhs.drink_size, rhs.hot, 
-                   rhs.bubble_size); 
+    customer_name = rhs.customer_name; 
+    drink_size= rhs.drink_size;
+    hot = rhs.hot;
+    bubble_size = rhs.bubble_size; 
 }
 
 BubbleTea & BubbleTea::operator= (const BubbleTea &rhs) {
@@ -40,8 +42,9 @@ BubbleTea & BubbleTea::operator= (const BubbleTea &rhs) {
 }
 
 void BubbleTea::confirmOrder() const {
-    cout << customer_name << " ordered a " << size(drink_size) << 
-    " drink of bubble tea with " << size(bubble_size) << " bubble" <<endl;
+    cout << customer_name << " ordered a " << size(drink_size)<< 
+    ((hot)? " hot" : " warm")<< " drink of bubble tea with " << 
+    size(bubble_size) << " bubble";
     // no need for endl; it's already included in main.cpp
 }
 
@@ -54,7 +57,9 @@ OrangeJuice:: OrangeJuice (string name, int dsize, bool p) {
 } 
 
 OrangeJuice:: OrangeJuice (const OrangeJuice &rhs) {
-    OrangeJuice (rhs.customer_name, rhs.drink_size, rhs.pulp);
+    customer_name = rhs.customer_name;
+    drink_size = rhs.drink_size;
+    pulp = rhs.pulp;
 }
 
 OrangeJuice & OrangeJuice::operator= (const OrangeJuice &rhs) {
@@ -69,7 +74,7 @@ OrangeJuice & OrangeJuice::operator= (const OrangeJuice &rhs) {
 void OrangeJuice::confirmOrder() const {
     cout << customer_name << " ordered a " << size(drink_size) <<
     " drink of Orange Juice with " <<
-    ( (pulp)? "pulp" : "no pulp" ) <<endl; // no need for endl
+    ( (pulp)? "pulp" : "no pulp" ); // no need for endl
 }
 
 /////////////////////////////////////

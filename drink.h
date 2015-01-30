@@ -1,3 +1,15 @@
+/* 
+* Team: Ian Bacus and Yousef Gtat
+* CSE335
+* Project01
+* Date: 02/05/2015
+*
+*
+*
+*/
+
+
+
 #include <string>
 #include <iostream>
 using std::string;
@@ -14,7 +26,6 @@ class Drink {
         string customer_name;
     public: 
         virtual void confirmOrder() const = 0;
-        //string size (int) const;
 };
 
 
