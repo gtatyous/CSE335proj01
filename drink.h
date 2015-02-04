@@ -26,7 +26,7 @@ class Drink {
         string customer_name;
     public: 
         virtual void confirmOrder() const = 0;
-        //virtual ~Drink();
+        virtual ~Drink() {};
 };
 
 
@@ -40,7 +40,7 @@ class BubbleTea : public Drink {
         BubbleTea (const BubbleTea &);
         BubbleTea & operator= (const BubbleTea &);
         virtual void confirmOrder() const;
-        //virtual ~BubbleTea(); 
+        ~BubbleTea() {}; 
 };
 
 
@@ -53,6 +53,6 @@ class OrangeJuice : public Drink {
         OrangeJuice(const OrangeJuice &);
         OrangeJuice & operator= (const OrangeJuice &);
         virtual void confirmOrder () const;
-        //virtual ~OrangeJuice();
+        ~OrangeJuice() {};
 };
 #endif

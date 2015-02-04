@@ -1,13 +1,13 @@
 all: proj01
 
 proj01: main.o drink.o
-	g++ main.o drink.o -o proj01
+	g++ -std=c++11 main.o drink.o -o proj01
 
 main.o: main.cpp drink.h
-	g++ -c -Wall main.cpp
+	g++ -std=c++11 -c -Wall main.cpp
 
 drink.o: drink.cpp drink.h
-	g++ -c -Wall drink.cpp
+	g++ -std=c++11 -c -Wall drink.cpp
 
 clean:
 	rm *o proj01
