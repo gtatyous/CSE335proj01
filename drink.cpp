@@ -1,11 +1,21 @@
+/*
+ *
+ *
+ *
+ *
+ */
 
-// questions: do we need virtual destructors?
 
 #include "drink.h"
+#include <iostream>
+using std::cout;
+using std::endl;
 
-///////////////////////////////////
 
-string size(int s) {
+//This function is used in confirmOrder()
+
+string size(int s)
+{
     if (s==1) {
         return "small";
     } else if (s==2) {
@@ -15,23 +25,26 @@ string size(int s) {
     }
 }
 
-//////////////////////////////////
 
-BubbleTea:: BubbleTea (string name, int dsize, bool temp, int bsize) {
-    customer_name = name;
-    drink_size = dsize;
+//Begin BubbleTea Class Implementation
+
+//Default constructor
+BubbleTea:: BubbleTea (string name, int dsize, bool temp, int bsize): Drink(name,dsize)
+{
     hot = temp;
     bubble_size = bsize;
 } 
 
-BubbleTea::BubbleTea (const BubbleTea &rhs) {
-    customer_name = rhs.customer_name; 
-    drink_size= rhs.drink_size;
+//Copy Constructor
+BubbleTea::BubbleTea (const BubbleTea &rhs): Drink(rhs.customer_name, rhs.drink_size)
+{
     hot = rhs.hot;
     bubble_size = rhs.bubble_size; 
 }
 
-BubbleTea & BubbleTea::operator= (const BubbleTea &rhs) {
+//Assignment Operator
+BubbleTea & BubbleTea::operator= (const BubbleTea &rhs)
+{
     if (this != &rhs) {
         customer_name = rhs.customer_name;
         drink_size = rhs.drink_size;
@@ -41,28 +54,35 @@ BubbleTea & BubbleTea::operator= (const BubbleTea &rhs) {
     return *this;
 }
 
-void BubbleTea::confirmOrder() const {
+//Prints the customer order
+void BubbleTea::confirmOrder() const
+{
     cout << customer_name << " ordered a " << size(drink_size)<< 
     ((hot)? " hot" : " warm")<< " drink of bubble tea with " << 
     size(bubble_size) << " bubble";
     // no need for endl; it's already included in main.cpp
 }
 
-/////////////////////////////////////
 
-OrangeJuice:: OrangeJuice (string name, int dsize, bool p) {
-    customer_name = name;
-    drink_size = dsize;
+
+//Begin OrangeJuice Class Implementation
+
+
+//Default constructor
+OrangeJuice:: OrangeJuice (string name, int dsize, bool p): Drink(name,dsize)
+{
     pulp = p;
 } 
 
-OrangeJuice:: OrangeJuice (const OrangeJuice &rhs) {
-    customer_name = rhs.customer_name;
-    drink_size = rhs.drink_size;
+//Copy Constructor
+OrangeJuice:: OrangeJuice (const OrangeJuice &rhs): Drink(rhs.customer_name, rhs.drink_size)
+{
     pulp = rhs.pulp;
 }
 
-OrangeJuice & OrangeJuice::operator= (const OrangeJuice &rhs) {
+//Assignment Operator
+OrangeJuice & OrangeJuice::operator= (const OrangeJuice &rhs)
+{
     if (this != &rhs) {
         customer_name = rhs.customer_name;
         drink_size = rhs.drink_size;
@@ -71,10 +91,10 @@ OrangeJuice & OrangeJuice::operator= (const OrangeJuice &rhs) {
     return *this;
 }
 
-void OrangeJuice::confirmOrder() const {
+//Prints the customer order
+void OrangeJuice::confirmOrder() const
+{
     cout << customer_name << " ordered a " << size(drink_size) <<
     " drink of Orange Juice with " <<
     ( (pulp)? "pulp" : "no pulp" ); // no need for endl
 }
-
-/////////////////////////////////////
