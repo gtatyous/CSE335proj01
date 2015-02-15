@@ -1,9 +1,33 @@
-/*
- *
- *
- *
- *
- */
+/******************************************************
+** FILE: filename.cpp
+**
+** ABSTRACT:
+** A general description of the module's role in the
+** overall software architecture, What services it
+** provides and how it interacts with other components.
+**
+** DOCUMENTS:
+** A reference to the applicable design documents.
+**
+** AUTHOR:
+** Your name here
+**
+** CREATION DATE:
+** 14/03/1998
+**
+** NOTES:
+** Other relevant information
+*******************************************************/ 
+
+/* 
+* Team: Ian Bacus and Yousef Gtat
+* CSE335
+* Project01
+* Date: 02/16/2015
+*
+*
+*
+*/
 
 
 #include "drink.h"
@@ -16,40 +40,48 @@ using std::endl;
 
 string size(int s)
 {
-    if (s==1) {
+    if (s==1) 
+    {
         return "small";
-    } else if (s==2) {
+    }
+    else if (s==2)
+    {
         return "medium";
-    } else {
+    } 
+    else 
+    {
         return "large";    
     }
 }
 
 
-//Begin BubbleTea Class Implementation
+/////////////////////////Begin BubbleTea Class Implementation/////////////////////////////
 
 //Default constructor
 BubbleTea:: BubbleTea (string name, int dsize, bool temp, int bsize): Drink(name,dsize)
 {
-    hot = temp;
-    bubble_size = bsize;
+    m_hot = temp;
+    m_bubbleSize = bsize;
 } 
 
 //Copy Constructor
-BubbleTea::BubbleTea (const BubbleTea &rhs): Drink(rhs.customer_name, rhs.drink_size)
+BubbleTea::BubbleTea (const BubbleTea &rhs)
 {
-    hot = rhs.hot;
-    bubble_size = rhs.bubble_size; 
+    setCustomerName(rhs.getCustomerName());
+    setDrinkSize(rhs.getDrinkSize());
+    m_hot = rhs.m_hot;
+    m_bubbleSize = rhs.m_bubbleSize; 
 }
 
 //Assignment Operator
 BubbleTea & BubbleTea::operator= (const BubbleTea &rhs)
 {
-    if (this != &rhs) {
-        customer_name = rhs.customer_name;
-        drink_size = rhs.drink_size;
-        hot = rhs.hot;
-        bubble_size = rhs.bubble_size;
+    if (this != &rhs)
+    {
+        setCustomerName(rhs.getCustomerName());
+        setDrinkSize(rhs.getDrinkSize());
+        m_hot = rhs.m_hot;
+        m_bubbleSize = rhs.m_bubbleSize;
     }
     return *this;
 }
@@ -57,36 +89,38 @@ BubbleTea & BubbleTea::operator= (const BubbleTea &rhs)
 //Prints the customer order
 void BubbleTea::confirmOrder() const
 {
-    cout << customer_name << " ordered a " << size(drink_size)<< 
-    ((hot)? " hot" : " warm")<< " drink of bubble tea with " << 
-    size(bubble_size) << " bubble";
-    // no need for endl; it's already included in main.cpp
+    cout << "\n" << getCustomerName() << " ordered a " << size(getDrinkSize())<< 
+    ((m_hot)? " hot" : " warm")<< " drink of bubble tea with " << 
+    size(m_bubbleSize) << " bubbles" << endl;
 }
 
 
 
-//Begin OrangeJuice Class Implementation
+///////////////////////Begin OrangeJuice Class Implementation/////////////////////////////
 
 
 //Default constructor
 OrangeJuice:: OrangeJuice (string name, int dsize, bool p): Drink(name,dsize)
 {
-    pulp = p;
+    m_pulp = p;
 } 
 
 //Copy Constructor
-OrangeJuice:: OrangeJuice (const OrangeJuice &rhs): Drink(rhs.customer_name, rhs.drink_size)
+OrangeJuice:: OrangeJuice (const OrangeJuice &rhs)
 {
-    pulp = rhs.pulp;
+    setCustomerName(rhs.getCustomerName());
+    setDrinkSize(rhs.getDrinkSize());
+    m_pulp = rhs.m_pulp;
 }
 
 //Assignment Operator
 OrangeJuice & OrangeJuice::operator= (const OrangeJuice &rhs)
 {
-    if (this != &rhs) {
-        customer_name = rhs.customer_name;
-        drink_size = rhs.drink_size;
-        pulp = rhs.pulp;    
+    if (this != &rhs)
+    {
+        setCustomerName(rhs.getCustomerName());
+        setDrinkSize(rhs.getDrinkSize());
+        m_pulp = rhs.m_pulp;    
     } 
     return *this;
 }
@@ -94,7 +128,7 @@ OrangeJuice & OrangeJuice::operator= (const OrangeJuice &rhs)
 //Prints the customer order
 void OrangeJuice::confirmOrder() const
 {
-    cout << customer_name << " ordered a " << size(drink_size) <<
+    cout << "\n" << getCustomerName() << " ordered a " << size(getDrinkSize()) <<
     " drink of Orange Juice with " <<
-    ( (pulp)? "pulp" : "no pulp" ); // no need for endl
+    ( (m_pulp)? "pulp" : "no pulp" ) << endl;
 }
